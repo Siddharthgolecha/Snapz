@@ -1,18 +1,19 @@
-html, body, .grid-container { 
-  height: 100%; 
-  margin: 0; 
-}
+html, body, .grid-container { height: 100%; margin: 0; }
 
 .grid-container {
   display: grid;
-  grid-template-columns: 0.3fr 2.7fr;
+  grid-template-columns: 0.3fr 1.8fr 0.9fr;
   grid-template-rows: 0.2fr 0.3fr 3.3fr 0.2fr;
   gap: 1px 1px;
-  grid-template-areas: "Header Header" "Menu Menu" "Tools Canvas" "Footer Footer" ;
+  grid-template-areas: "Header Header Header" "Menu Menu Menu" "Tools Canvas Canvas" "Footer Footer Footer" ;
 }
 
 .Canvas {
   display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: ".";
   grid-area: Canvas;
 }
 
@@ -21,9 +22,22 @@ html, body, .grid-container {
   grid-template-columns: 1fr;
   grid-template-rows: repeat(7,1fr);
   gap: 1px 1px;
-  grid-template-areas: "." "." "." "." "." "." ".";
+  grid-template-areas: "Resize" "Crop" "Rotate" "Blur" "Sharpen" "Filters" "Stickers";
   grid-area: Tools;
 }
+.Resize { grid-area: Resize; }
+
+.Crop { grid-area: Crop; }
+
+.Rotate { grid-area: Rotate; }
+
+.Blur { grid-area: Blur; }
+
+.Sharpen { grid-area: Sharpen; }
+
+.Filters { grid-area: Filters; }
+
+.Stickers { grid-area: Stickers; }
 
 .Menu {
   display: grid;
@@ -44,12 +58,13 @@ html, body, .grid-container {
 
 .Open { grid-area: Open; }
 
+
 .Footer {
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 4fr 0.5fr 0.5fr;
   grid-template-rows: 1fr;
   gap: 1px 1px;
-  grid-template-areas: ". .";
+  grid-template-areas: ". . .";
   grid-area: Footer;
 }
 
@@ -72,4 +87,5 @@ html, body, .grid-container {
  top: 0;
  left: 0;
 }
+
 
