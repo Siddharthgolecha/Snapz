@@ -1,0 +1,67 @@
+html, body, .grid-container { height: 100%; margin: 0; }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.3fr 1.8fr 0.9fr;
+  grid-template-rows: 0.2fr 0.3fr 3.3fr 0.2fr;
+  gap: 1px 1px;
+  grid-template-areas: "Header Header Header" "Menu Menu Menu" "Tools Canvas Canvas" "Footer Footer Footer" ;
+}
+
+.Canvas {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: ".";
+  grid-area: Canvas;
+}
+
+.Tools {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(7,1fr);
+  gap: 1px 1px;
+  grid-template-areas: "." "." "." "." "." "." ".";
+  grid-area: Tools;
+}
+
+.Menu {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: ". . . . .";
+  grid-area: Menu;
+}
+
+.Footer {
+  display: grid;
+  grid-template-columns: 4fr 0.5fr 0.5fr;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: ". . .";
+  grid-area: Footer;
+}
+
+.Header {
+  display: grid;
+  grid-template-columns: 4fr 0.5fr 0.5fr;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: ". . .";
+  grid-area: Header;
+}
+
+.grid-container * { 
+ border: 1px solid red;
+ position: relative;
+}
+
+.grid-container *:after { 
+ position: absolute;
+ top: 0;
+ left: 0;
+}
+
+
