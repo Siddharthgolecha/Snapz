@@ -1,0 +1,59 @@
+.h3-size {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.center-text {
+  text-align: right;
+}
+header{
+  font-family: 'Montaga', serif;
+  background-image:url("background.jpg");
+  background-size: cover;
+  padding: 3%;
+  padding-left: 5%;
+  color: black;
+}
+div{
+  font-size: 30px;
+}
+img {
+  float: left;
+  width: 50px;
+  height: 50px;
+  background: #555;
+}
+
+h1 {
+  position: right;
+  top: 10px;
+  left: 10px;
+}
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav-right {
+  float: right;
+}
