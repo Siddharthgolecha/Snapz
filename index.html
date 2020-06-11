@@ -1,36 +1,100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
 	<head>
-		<title>Page Title</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Add icon library -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="favicon2.ico"/>
+		<title>Snapz - Photo Editing in no time</title>
 		<link href="style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="navigation.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montaga&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<div class="grid-container">
-            <div class="Header">
-                Header
-            </div>
-            <div class="Canvas">
-                Canvas
+            <div class="Navbar"> 
+				<div class="Logo"><!--
+					  <button class="button"><a href="index.html" class="Logo_text"><img class="Logo_img"></img>Snapz</a></button>
+						  <img src="logo_4.png" class="Logo_img">
+					  -->
+				</div> 
+                <div class="Menu">
+	  				<button class="button"><i class="fa fa-plus"></i><br>New</button>
+	  				<button class="button"><i class="fa fa-folder-open"></i><br>Open</button>
+	  				<button class="button"><i class="fa fa-save"></i><br>Save</button>
+	  				<button class="button"><i class="fa fa-undo"></i><br>Undo</button>
+	  				<button class="button"><i class="fa fa-repeat"></i><br>Redo</button>
+					<button class="button"><i class="fa fa-download"></i><br>Download</button>
+				</div>
+				<div class="Others">
+					<div></div><div></div>
+	  				<button class="button"><i class="fa fa-question-circle"></i><br>Help</button>
+	  				<button class="button"><i class="fa fa-support"></i><br>About</button>
+				</div>
             </div>
             <div class="Tools">
-                <div class="Resize">Resize</div>
-                <div class="Crop">Crop</div>
-                <div class="Rotate">Rotate</div>
-                <div class="Blur">Blur</div>
-                <div class="Sharpen">Sharpen</div>
-                <div class="Filters">Filters</div>
-                <div class="Stickers">Stickers</div>
+	  				<button class="button" value="Resize" onclick="openNav(this)" id=""><i class="fa fa-arrows-alt"></i><br>Resize</button>
+	  				<button class="button" value="Crop" onclick="openNav(this)" id=""><i class="fa fa-crop"></i><br>Crop</button>
+	  				<button class="button" value="Rotate" onclick="openNav(this)" id=""><i class="fa fa-repeat"></i><br>Rotate</button>
+	  				<button class="button" value="Effects" onclick="openNav(this)" id=""><i class="fa fa-eyedropper"></i><br>Effects</button>
+					<button class="button" value="Filters" onclick="openNav(this)" id=""><i class="fa fa-filter"></i><br>Filters</button>
+					<button class="button" value="Stickers" onclick="openNav(this)" id=""><i class="fa fa-sticky-note"></i><br>Stickers</button>
             </div>
-            <div class="Menu">
-                <div class="Download">Download</div>
-                <div class="Redo">Redo</div>
-                <div class="Undo">Undo</div>
-                <div class="Save">Save</div>
-                <div class="Open">Open</div>
-            </div>
-            <div class="Footer">
-                Footer
-            </div>
-        </div>
+            <div class="Area" id="Area">
+						<div id="ResizeNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						  <p>By Percentage</p>
+						  <p>By Dimensions</p>
+						</div>
+						<div id="RotateNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						  <p>Rotate 90&deg; clockwise</p>
+						  <p>Rotate 90&deg; anti-clockwise</p>
+						  <p>Custom</p>
+						  <p>Mirror</p>
+						</div>
+						<div id="EffectsNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						  <p>Blur</p>
+						  <p>Sharpen</p>
+						</div>
+						<div id="FiltersNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						  <p>Grayscale</p>
+						  <p>Negative</p>
+						</div>
+						<div id="StickersNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						</div>
+            	<div class="Canvas" id="Canvas">
+            	</div>
+			</div>
+            	<div class="Footer">
+	            	<div class="Resolution">
+						Image Resolution: (0px,0px)
+            		</div>	
+	            	<div class="Zoom">
+						<button class="button1"><i class="fa fa-minus"></i></button>
+						<div class="dropup">
+							<button class="zoom">Fit</button>
+							  <div class="dropup-content">
+							  	<a href="#">Fit</a>
+							  	<a href="#">Fill</a>
+							  	<a href="#">25%</a>
+							  	<a href="#">50%</a>
+							  	<a href="#">75%</a>
+							  	<a href="#">100%</a>
+							  	<a href="#">200%</a>
+							  	<a href="#">500%</a>
+							  	<a href="#">750%</a>
+							  	<a href="#">1000%</a>
+							  </div>
+						</div>
+						<button class="button1"><i class="fa fa-plus"></i></button>
+            		</div>	
+	  				<button class="button"><i class="fa fa-envelope"></i><br>Contact</button>
+            	</div>
+		</div>
 	</body>
 </html>

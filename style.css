@@ -1,86 +1,326 @@
-html, body, .grid-container { height: 100%; margin: 0; }
+html, body, .grid-container { 
+  height: 100%; 
+  margin: 0;
+}
+
+body {
+  background-color: #393e46;
+  color: #FFF; /*393e46*/
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: #FFF;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  float: left;
+}
+
+.Navbar {
+  display: grid;
+  margin: 0;
+  width: 100%;
+  background-color: #222831;
+  grid-template-columns: 1fr 2fr 1.5fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "Logo Menu Others";
+  grid-area: Navbar;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+  position: fixed;
+  top: 0;
+}
+
+.Logo {
+  display: grid;
+  grid-template-columns: 1fr ;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "Logo_img Logo_text";
+  grid-area: Logo;
+}
+
+.Logo .button {
+  background:url(logo_4.png);
+  background-repeat: no-repeat;
+  background-color: Transparent;
+  border: none;
+  padding: 10px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+
+.Logo .button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+.Menu {
+  display: grid;
+  grid-template-columns: repeat(6,1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "button button button button button button";
+  grid-area: Menu;
+}
+ 
+
+.Menu .button {
+  background-color: #222831;
+  color: #FFF;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+
+.Menu .button:hover {
+  transition: 0.4s;
+  background-color: #23ACD6;
+  color: #222831; 
+}
+
+.Others {
+  display: grid;
+  vertical-align: center;
+  margin: 5px 10px 5px 10px;
+  grid-template-columns: 1fr 1fr 2fr 2fr;
+  grid-template-rows: 1fr;
+  gap: 3px 3px;
+  grid-template-areas: ". . button button";
+  grid-area: Others;
+}
+
+.Others .button {
+  background-color: #23ACD6;
+  color: #222831; 
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border-radius: 500px;
+}
+
+.Others .button:hover {
+  transition: 0.4s;
+  background-color: #222831;
+  color: #FFF;
+  border: 1px solid #23ACD6;
+}
+
+.Logo_img {
+  height: 100%;
+  vertical-align:middle;
+}
+
 
 .grid-container {
   display: grid;
-  grid-template-columns: 0.3fr 1.8fr 0.9fr;
-  grid-template-rows: 0.2fr 0.3fr 3.3fr 0.2fr;
-  gap: 1px 1px;
-  grid-template-areas: "Header Header Header" "Menu Menu Menu" "Tools Canvas Canvas" "Footer Footer Footer" ;
+  gap: 0px 2px;
+  grid-template-columns: 0.1fr 2.7fr;
+  grid-template-rows: 1fr 15fr 1fr;
+  grid-template-areas: "	Navbar Navbar" "Tools Area" "Footer Footer";
 }
 
-.Canvas {
+.Area {
   display: grid;
+  margin: 0;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  gap: 1px 1px;
-  grid-template-areas: ".";
-  grid-area: Canvas;
+  grid-template-areas: "Canvas";
+  grid-area: Area;
 }
 
 .Tools {
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(7,1fr);
-  gap: 1px 1px;
-  grid-template-areas: "Resize" "Crop" "Rotate" "Blur" "Sharpen" "Filters" "Stickers";
+  grid-template-rows: repeat(6,1fr);
+  grid-template-areas: "button" "button" "button" "button" "button" "button";
   grid-area: Tools;
+  box-shadow: 4px 0 2px -2px rgba(0,0,0,.2);
 }
-.Resize { grid-area: Resize; }
 
-.Crop { grid-area: Crop; }
+.Tools .button {
+  background-color: #222831;
+  color: #FFF;
+  padding: 10px 10px;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
 
-.Rotate { grid-area: Rotate; }
+.Tools .button:hover {
+  transition: 0.4s;
+  background-color: #23ACD6;
+  color: #222831; 
+}
 
-.Blur { grid-area: Blur; }
-
-.Sharpen { grid-area: Sharpen; }
-
-.Filters { grid-area: Filters; }
-
-.Stickers { grid-area: Stickers; }
-
-.Menu {
+.Canvas {
   display: grid;
-  grid-template-columns: repeat(5,1fr);
-  grid-template-rows: 1fr;
-  gap: 1px 1px;
-  grid-template-areas: "Open Save Undo Redo Download";
-  grid-area: Menu;
+  grid-area: Canvas;
+  margin: auto;
+  height: 90%;
+  width: 80%;
+  background-color: #FFF;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.2), 
+        -4px 0 2px -2px rgba(0,0,0,.2), 4px 0 2px -2px rgba(0,0,0,.2);
 }
-
-.Download { grid-area: Download; }
-
-.Redo { grid-area: Redo; }
-
-.Undo { grid-area: Undo; }
-
-.Save { grid-area: Save; }
-
-.Open { grid-area: Open; }
 
 
 .Footer {
   display: grid;
-  grid-template-columns: 4fr 0.5fr 0.5fr;
+  background-color: #222831;
+  grid-template-columns: 4fr 1fr 1fr; 
   grid-template-rows: 1fr;
-  gap: 1px 1px;
-  grid-template-areas: ". . .";
+  grid-template-areas: "Resolution Zoom button";
   grid-area: Footer;
+  box-shadow: 0 -4px 2px -2px rgba(0,0,0,.2);
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
-.Header {
+.Resolution {
+  background-color: #222831;
+  color: #FFF;
+  padding: 10px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  text-decoration: none;
+  margin: 2px;
+}
+
+.Zoom {
   display: grid;
-  grid-template-columns: 4fr 0.5fr 0.5fr;
+  background-color: #222831;
+  grid-template-columns: 1fr 2fr 1fr; 
   grid-template-rows: 1fr;
-  gap: 1px 1px;
-  grid-template-areas: ". . .";
-  grid-area: Header;
+  grid-template-areas: "button1 dropup button1";
+  grid-area: Zoom;
 }
 
+.Zoom .button1 {
+  background-color: #222831;
+  color: #FFF;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+
+.Zoom .button1:hover {
+  transition: 0.4s;
+  background-color: #23ACD6;
+  color: #222831; 
+}
+
+.Zoom .zoom {
+  background-color: #222831;
+  color: #FFF;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 100%;
+  outline: none;
+}
+
+.dropup {
+  position: relative;
+  display: inline-block;
+}
+
+.dropup-content {
+  display: none;
+  position: absolute;
+  background-color: #222;
+  margin: auto; 
+  bottom: 50px;
+  z-index: 1;
+}
+
+.dropup-content a {
+  color: #FFF;
+  margin: auto;
+  padding: 5px 0 5px 0;
+  text-align: center;
+  text-decoration: none;
+  min-width: 100%;
+  bottom: 50px;
+  display: block;
+}
+
+.dropup-content a:hover {background-color: #111}
+
+.dropup:hover .dropup-content {
+  display: block;
+}
+
+.dropup:hover .zoom {
+  transition: 0.4s;
+  background-color: #23ACD6;
+  color: #222831; 
+}
+
+.Footer .button {
+  background-color: #23ACD6;
+  color: #222831; 
+  border: none;
+  margin: auto;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  height: 90%;
+  width: 60%;
+  outline: none;
+  border-radius: 500px;
+}
+
+.Footer .button:hover {
+  transition: 0.4s;
+  background-color: #222831;
+  color: #FFF;
+  border: 1px solid #23ACD6;
+}
+/*
 .grid-container * { 
  border: 1px solid red;
  position: relative;
-}
+}*/
 
 .grid-container *:after { 
  position: absolute;
@@ -88,4 +328,40 @@ html, body, .grid-container { height: 100%; margin: 0; }
  left: 0;
 }
 
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: inherit;
+  left: inherit;
+  z-index: 1;
+  background-color: #222831;
+  color: #FFF;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+}
+
+.sidenav p {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #FFF;
+  display: block;
+  transition: 0.4s;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav p {font-size: 20px;}
+}
 
