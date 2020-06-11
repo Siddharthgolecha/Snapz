@@ -28,7 +28,7 @@ a {
   grid-template-areas: "Logo Menu Others";
   grid-area: Navbar;
   box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
-  position: fixed;
+  position: sticky;
   top: 0;
 }
 
@@ -197,7 +197,7 @@ a {
   grid-template-areas: "Resolution Zoom button";
   grid-area: Footer;
   box-shadow: 0 -4px 2px -2px rgba(0,0,0,.2);
-  position: fixed;
+  position: sticky;
   bottom: 0;
   width: 100%;
 }
