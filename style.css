@@ -25,7 +25,7 @@ a {
   width: 100%;
   z-index: 2;
   background-color: #222831;
-  grid-template-columns: 1fr 2fr 1.5fr;
+  grid-template-columns: 1fr 1.5fr 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "Logo Menu Others";
   grid-area: Navbar;
@@ -65,12 +65,18 @@ a {
 
 .Menu {
   display: grid;
-  grid-template-columns: repeat(6,1fr);
+  grid-template-columns: repeat(5,1fr);
   grid-template-rows: 1fr;
-  grid-template-areas: "button button button button button button";
+  grid-template-areas: "Menubutton Menubutton Menubutton Menubutton Menubutton";
   grid-area: Menu;
 }
- 
+
+.Menu input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 
 .Menubutton {
   background-color: #222831;
@@ -96,9 +102,9 @@ a {
   display: grid;
   vertical-align: center;
   margin: 5px 10px 5px 10px;
-  grid-template-columns: 1fr 1fr 2fr 2fr;
+  grid-template-columns: 1fr 1fr 2.5fr 2.5fr;
   grid-template-rows: 1fr;
-  gap: 3px 3px;
+  gap: 10px 10px;
   grid-template-areas: ". . button button";
   grid-area: Others;
 }
@@ -117,6 +123,7 @@ a {
   width: 100%;
   outline: none;
   border-radius: 500px;
+  margin-right: 10px;
 }
 
 .Othersbutton:hover {
@@ -321,11 +328,11 @@ a {
   border: 1px solid #23ACD6;
 }
 /*
-.sidenav * { 
+.grid-container * { 
  border: 1px solid red;
  position: relative;
-}*/
-
+}
+*/
 .grid-container *:after { 
  position: absolute;
  top: 0;
