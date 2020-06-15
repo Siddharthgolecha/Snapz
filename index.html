@@ -9,6 +9,18 @@
 		<title>Snapz - Photo Editing in no time</title>
 		<link href="style.css" rel="stylesheet" type="text/css">
 		<script type="text/javascript" src="navigation.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type>
+			console.log(
+				$('#Canvas').css('width')
+			);
+			$("#DimensionH").val(
+				$('#Canvas').css('width')
+			);
+			$("#DimensionV").val(
+				$('#Canvas').css('height')
+			);
+		</script>
         <link href="https://fonts.googleapis.com/css2?family=Montaga&display=swap" rel="stylesheet">
 	</head>
 	<body>
@@ -20,49 +32,68 @@
 					  -->
 				</div> 
                 <div class="Menu">
-	  				<button class="button"><i class="fa fa-plus"></i><br>New</button>
-	  				<button class="button"><i class="fa fa-folder-open"></i><br>Open</button>
-	  				<button class="button"><i class="fa fa-save"></i><br>Save</button>
-	  				<button class="button"><i class="fa fa-undo"></i><br>Undo</button>
-	  				<button class="button"><i class="fa fa-repeat"></i><br>Redo</button>
-					<button class="button"><i class="fa fa-download"></i><br>Download</button>
+	  				<button class="Menubutton"><i class="fa fa-plus"></i><br>New</button>
+	  				<button class="Menubutton"><i class="fa fa-folder-open"></i><br>Open</button>
+	  				<button class="Menubutton"><i class="fa fa-save"></i><br>Save</button>
+	  				<button class="Menubutton"><i class="fa fa-undo"></i><br>Undo</button>
+	  				<button class="Menubutton"><i class="fa fa-repeat"></i><br>Redo</button>
+					<button class="Menubutton"><i class="fa fa-download"></i><br>Download</button>
 				</div>
 				<div class="Others">
 					<div></div><div></div>
-	  				<button class="button"><i class="fa fa-question-circle"></i><br>Help</button>
-	  				<button class="button"><i class="fa fa-support"></i><br>About</button>
+	  				<button class="Othersbutton"><i class="fa fa-question-circle"></i><br>Help</button>
+	  				<button class="Othersbutton"><i class="fa fa-support"></i><br>About</button>
 				</div>
             </div>
             <div class="Tools">
-	  				<button class="button" value="Resize" onclick="openNav(this)" id=""><i class="fa fa-arrows-alt"></i><br>Resize</button>
-	  				<button class="button" value="Crop" onclick="openNav(this)" id=""><i class="fa fa-crop"></i><br>Crop</button>
-	  				<button class="button" value="Rotate" onclick="openNav(this)" id=""><i class="fa fa-repeat"></i><br>Rotate</button>
-	  				<button class="button" value="Effects" onclick="openNav(this)" id=""><i class="fa fa-eyedropper"></i><br>Effects</button>
-					<button class="button" value="Filters" onclick="openNav(this)" id=""><i class="fa fa-filter"></i><br>Filters</button>
-					<button class="button" value="Stickers" onclick="openNav(this)" id=""><i class="fa fa-sticky-note"></i><br>Stickers</button>
+	  				<button class="Toolsbutton" value="Resize" onclick="openNav(this)" id=""><i class="fa fa-arrows-alt"></i><br>Resize</button>
+	  				<button class="Toolsbutton" value="Crop" onclick="openNav(this)" id=""><i class="fa fa-crop"></i><br>Crop</button>
+	  				<button class="Toolsbutton" value="Rotate" onclick="openNav(this)" id=""><i class="fa fa-repeat"></i><br>Rotate</button>
+	  				<button class="Toolsbutton" value="Effects" onclick="openNav(this)" id=""><i class="fa fa-eyedropper"></i><br>Effects</button>
+					<button class="Toolsbutton" value="Filters" onclick="openNav(this)" id=""><i class="fa fa-filter"></i><br>Filters</button>
+					<button class="Toolsbutton" value="Stickers" onclick="openNav(this)" id=""><i class="fa fa-sticky-note"></i><br>Stickers</button>
             </div>
             <div class="Area" id="Area">
 						<div id="ResizeNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-						  <p>By Percentage</p>
-						  <p>By Dimensions</p>
+						  <button class="Navbutton" value="Percentage" data-pname="Resize" onclick="showOptions(this)" id="">By Percentage</button>
+						  <div id="ResizePercentage">	
+								  <label for="percentH">Horizontal: </label><input type="text" id="PercentageH" size="4" value="100"><br>
+								  <label for="percentV">Vertical: &nbsp&nbsp&nbsp&nbsp&nbsp</label><input type="text" id="PercentageV" size="4" value="100"><br><br>
+								  <label class="container">Maintain Aspect Ratio
+  									<input type="checkbox" checked="checked">
+									<span class="checkmark"></span>
+								</label>
+						  </div>
+						  <button class="Navbutton" value="Dimension" data-pname="Resize" onclick="showOptions(this)" id="">By Dimensions</button>
+						  <div id="ResizeDimension">	
+								  <label for="dimH">Horizontal: </label><input type="text" id="DimensionH" size="4" value="100"><br>
+								  <label for="dimV">Vertical: &nbsp&nbsp&nbsp&nbsp&nbsp</label><input type="text" id="DimensionV" size="4" value="100"><br><br>
+								  <label class="container">Maintain Aspect Ratio
+  									<input type="checkbox" checked="checked">
+									<span class="checkmark"></span>
+								</label>
+						  </div>
 						</div>
 						<div id="RotateNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-						  <p>Rotate 90&deg; clockwise</p>
-						  <p>Rotate 90&deg; anti-clockwise</p>
-						  <p>Custom</p>
-						  <p>Mirror</p>
+						  <button class="Navbutton" value="90C" data-pname="Rotate" onclick="" id="">Rotate 90&deg; clockwise</button>
+						  <button class="Navbutton" value="90AC" data-pname="Rotate" onclick="" id="">Rotate 90&deg; anti-clockwise</button>
+						  <button class="Navbutton" value="Custom" data-pname="Rotate" onclick="showOptions(this)" id="">Custom</button>
+						  <div id="RotateCustom">	
+								  <label for="RotateCustom">Angle (in &deg;): </label><input type="text" id="RotateC" size="3" value="0"><br>
+						  </div>
+						  <button class="Navbutton" value="Mirror" data-pname="Rotate" onclick="" id="">Mirror</button>
 						</div>
 						<div id="EffectsNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-						  <p>Blur</p>
-						  <p>Sharpen</p>
+						  <button class="Navbutton" value="Blur" data-pname="Effects" onclick="" id="">Blur</button>
+						  <button class="Navbutton" value="Sharpen" data-pname="Effects" onclick="" id="">Sharpen</button>
 						</div>
 						<div id="FiltersNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-						  <p>Grayscale</p>
-						  <p>Negative</p>
+						  <button class="Navbutton" value="Grayscale" data-pname="Filters" onclick="" id="">Grayscale</button>
+						  <button class="Navbutton" value="Negative" data-pname="Filters" onclick="" id="">Negative</button>
 						</div>
 						<div id="StickersNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
