@@ -6,7 +6,8 @@ html, body, .grid-container {
 body {
   background-color: #393e46;
   color: #FFF; /*393e46*/
-  font-size: 20px;
+  font-size: 16px;
+  margin: auto;
 }
 
 a {
@@ -22,6 +23,7 @@ a {
   display: grid;
   margin: 0;
   width: 100%;
+  z-index: 2;
   background-color: #222831;
   grid-template-columns: 1fr 2fr 1.5fr;
   grid-template-rows: 1fr;
@@ -70,7 +72,7 @@ a {
 }
  
 
-.Menu .button {
+.Menubutton {
   background-color: #222831;
   color: #FFF;
   border: none;
@@ -84,7 +86,7 @@ a {
   outline: none;
 }
 
-.Menu .button:hover {
+.Menubutton:hover {
   transition: 0.4s;
   background-color: #23ACD6;
   color: #222831; 
@@ -101,7 +103,7 @@ a {
   grid-area: Others;
 }
 
-.Others .button {
+.Othersbutton {
   background-color: #23ACD6;
   color: #222831; 
   border: none;
@@ -117,7 +119,7 @@ a {
   border-radius: 500px;
 }
 
-.Others .button:hover {
+.Othersbutton:hover {
   transition: 0.4s;
   background-color: #222831;
   color: #FFF;
@@ -156,7 +158,7 @@ a {
   box-shadow: 4px 0 2px -2px rgba(0,0,0,.2);
 }
 
-.Tools .button {
+.Toolsbutton {
   background-color: #222831;
   color: #FFF;
   padding: 10px 10px;
@@ -171,7 +173,7 @@ a {
   outline: none;
 }
 
-.Tools .button:hover {
+.Toolsbutton:hover {
   transition: 0.4s;
   background-color: #23ACD6;
   color: #222831; 
@@ -183,6 +185,7 @@ a {
   margin: auto;
   height: 90%;
   width: 80%;
+  z-index: 0;
   background-color: #FFF;
   box-shadow: 0 4px 2px -2px rgba(0,0,0,.2), 
         -4px 0 2px -2px rgba(0,0,0,.2), 4px 0 2px -2px rgba(0,0,0,.2);
@@ -200,6 +203,7 @@ a {
   position: sticky;
   bottom: 0;
   width: 100%;
+  z-index: 2;
 }
 
 .Resolution {
@@ -317,7 +321,7 @@ a {
   border: 1px solid #23ACD6;
 }
 /*
-.grid-container * { 
+.sidenav * { 
  border: 1px solid red;
  position: relative;
 }*/
@@ -341,15 +345,27 @@ a {
   overflow-x: hidden;
   transition: 0.4s;
   padding-top: 60px;
+  box-shadow: 4px 0 2px -2px rgba(0,0,0,.2) , 0 -4px 2px -2px rgba(0,0,0,.2);
 }
 
-.sidenav p {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 16px;
+.Navbutton {
+  background-color: #222831;
   color: #FFF;
+  margin: auto;
+  padding: 10px;
+  border: none;
+  text-align: center;
   display: block;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  outline: none;
+}
+
+.Navbutton:hover {
   transition: 0.4s;
+  background-color: #23ACD6;
+  color: #222831; 
 }
 
 .sidenav .closebtn {
@@ -362,6 +378,90 @@ a {
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
-  .sidenav p {font-size: 20px;}
+  .sidenav button {font-size: 20px;}
 }
 
+#ResizePercentage, #ResizeDimension, #RotateCustom {
+  background-color: #222831;
+  color: #FFF;
+  padding: 10px; 
+  margin: 10px;
+  width: 80%;
+  font-size: 16px;
+  display: none;
+}
+
+input[type=text], select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.container {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #FFF;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #DDD;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #23ACD6;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
