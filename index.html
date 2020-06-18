@@ -15,43 +15,62 @@
 			var width, imgw;
 			var hieght, imgh;
 			var ratio;
+			var perch ; 
+			var percv ; 
+			var dimh ; 
+			var dimv ; 
+			var img ;
+			var p ;
+			var d ;
+			function updateSize(h,w){
+				$(".Resolution").text("Image Resolution: ("+h+"px,"+w+"px)");
+			}
 			$(document).ready( function(){
 			width = $('#Canvas').width();
 			height = $("#Canvas").height();
 			imgw = $('#image').width();
 			imgh = $('#image').height();
 			ratio = imgh/imgw;
+			updateSize(Math.round(imgh),Math.round(imgw));
 			$('#DimensionH').val(Math.round(imgw));
 			$('#DimensionV').val(Math.round(imgh));
 			console.log(
 				$("#zoom").val()
 			);
-			var perch = $('#PercentageH'); 
-			var percv = $('#PercentageV'); 
-			var dimh = $('#DimensionH'); 
-			var dimv = $('#DimensionV'); 
-			var img = $('#image');
-			var p = $("#checkP");
-			var d = $("#checkD");
+			perch = $('#PercentageH'); 
+			percv = $('#PercentageV'); 
+			dimh = $('#DimensionH'); 
+			dimv = $('#DimensionV'); 
+			img = $('#image');
+			p = $("#checkP");
+			d = $("#checkD");
 			perch.change(function(){
 					resizep(img,perch,percv,p,true);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
     		});
 			percv.change(function(){
 					resizep(img,perch,percv,p,false);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
     		});
 			dimh.change(function(){
 					resized(img,dimh,dimv,d,true);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
     		});
 			dimv.change(function(){
 					resized(img,dimh,dimv,d,false);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
     		});
 			$("#checkboxP").click(function(){
 					console.log("checkbox P checked = "+$("#checkboxP").prop("checked"));
 					$("#checkP").attr("value",$("#checkboxP").prop("checked"));
+					resizep(img,perch,percv,p,false);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
 				});
 			$("#checkboxD").click(function(){
 					console.log("checkbox D checked = "+$("#checkboxD").prop("checked"));
             		$("#checkD").attr("value",$("#checkboxD").prop("checked"));
+					resized(img,dimh,dimv,d,false);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
 				});
 			$("#RotateC").change(function(){
 					rotate();

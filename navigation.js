@@ -76,13 +76,17 @@ function zoom(element){
 
 function zoomless(){
 		var zoom=$("#zoom").val();
-		var i = zoom-10;
+		var i = parseInt(zoom)-10;
 		console.log(i);
 		var canvas = $("#Canvas");
-		w = $('#Canvas').width();
-		h = $("#Canvas").height();
-		canvas.width(w*i/100);
-		canvas.height(h*i/100);
+		if (i==100){
+			canvas.width("80%");
+			canvas.height("90%");
+		}
+		else{
+			canvas.width(width*i/100);
+			canvas.height(height*i/100);
+		}
 		$('#zoom').append($('<option>', {
 			value: i,
 			text: i+"%",
@@ -93,13 +97,17 @@ function zoomless(){
 
 function zoommore(){
 		var zoom=$("#zoom").val();
-		var i = zoom+10;
+		var i = parseInt(zoom)+10;
 		console.log(i);
 		var canvas = $("#Canvas");
-		w = $('#Canvas').width();
-		h = $("#Canvas").height();
-		canvas.width(w*i/100);
-		canvas.height(h*i/100);
+		if (i==100){
+			canvas.width("80%");
+			canvas.height("90%");
+		}
+		else{
+			canvas.width(width*i/100);
+			canvas.height(height*i/100);
+		}
 		$('#zoom').append($('<option>', {
 			value: i,
 			text: i+"%",
@@ -129,6 +137,15 @@ function resized(img,inph,inpv,check,h=true){
 
 function download(){
 	console.log("Download");
+/*	var element = document.createElement('a');
+  	element.setAttribute('href', 'test.jpg');
+  	element.setAttribute('download', 'test');
+
+  	element.style.display = 'none';
+  	document.body.appendChild(element);
+
+  	element.click();
+  	document.body.removeChild(element);*/
 }
 
 function undo(){
