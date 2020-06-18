@@ -12,15 +12,51 @@
 		<script type="text/javascript" src="navigation.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script type>
+			var width, imgw;
+			var hieght, imgh;
+			var ratio;
+			$(document).ready( function(){
+			width = $('#Canvas').width();
+			height = $("#Canvas").height();
+			imgw = $('#image').width();
+			imgh = $('#image').height();
+			ratio = imgh/imgw;
+			$('#DimensionH').val(Math.round(imgw));
+			$('#DimensionV').val(Math.round(imgh));
 			console.log(
-				$('#Canvas').css('width')
+				$("#zoom").val()
 			);
-			$("#DimensionH").val(
-				$('#Canvas').css('width')
-			);
-			$("#DimensionV").val(
-				$('#Canvas').css('height')
-			);
+			var perch = $('#PercentageH'); 
+			var percv = $('#PercentageV'); 
+			var dimh = $('#DimensionH'); 
+			var dimv = $('#DimensionV'); 
+			var img = $('#image');
+			var p = $("#checkP");
+			var d = $("#checkD");
+			perch.change(function(){
+					resizep(img,perch,percv,p,true);
+    		});
+			percv.change(function(){
+					resizep(img,perch,percv,p,false);
+    		});
+			dimh.change(function(){
+					resized(img,dimh,dimv,d,true);
+    		});
+			dimv.change(function(){
+					resized(img,dimh,dimv,d,false);
+    		});
+			$("#checkboxP").click(function(){
+					console.log("checkbox P checked = "+$("#checkboxP").prop("checked"));
+					$("#checkP").attr("value",$("#checkboxP").prop("checked"));
+				});
+			$("#checkboxD").click(function(){
+					console.log("checkbox D checked = "+$("#checkboxD").prop("checked"));
+            		$("#checkD").attr("value",$("#checkboxD").prop("checked"));
+				});
+			$("#RotateC").change(function(){
+					rotate();
+    			});
+			});
 		</script>
         <link href="https://fonts.googleapis.com/css2?family=Montaga&display=swap" rel="stylesheet">
 
@@ -35,11 +71,11 @@
 				</div> 
                 <div class="Menu">
 					<input type="file" style="visibility:hidden;" id="files">
-	  				<button class="Menubutton" ><i class="fa fa-folder-open" ></i><label for="files"><br>Open</label></button>
-	  				<button class="Menubutton"><i class="fa fa-save"></i><br>Save</a></button>
-	  				<button class="Menubutton"><i class="fa fa-undo"></i><br>Undo</button>
-	  				<button class="Menubutton"><i class="fa fa-repeat"></i><br>Redo</button>
-	  				<button class="Menubutton"><i class="fa fa-download"></i><br>Download</button>			
+	  				<button class="Menubutton"><i class="fa fa-folder-open" ></i><label for="files"><br>Open</label></button>
+	  				<button class="Menubutton" onclick="save()"><i class="fa fa-save"></i><br>Save</a></button>
+	  				<button class="Menubutton" onclick="undo()"><i class="fa fa-undo"></i><br>Undo</button>
+	  				<button class="Menubutton" onclick="redo()"><i class="fa fa-repeat"></i><br>Redo</button>
+	  				<button class="Menubutton" onclick="download()"><i class="fa fa-download"></i><br>Download</button>			
 				</div>
 				<div class="Others">
 					<div></div><div></div>
@@ -49,7 +85,7 @@
             </div>
             <div class="Tools">
 	  				<button class="Toolsbutton" value="Resize" onclick="openNav(this)" id=""><i class="fa fa-arrows-alt"></i><br>Resize</button>
-	  				<button class="Toolsbutton" value="Crop" onclick="openNav(this)" id=""><i class="fa fa-crop"></i><br>Crop</button>
+	  				<button class="Toolsbutton" value="Crop" onclick="openNav(this)" id=""><i class="fa fa-crop" onlick="crop()"></i><br>Crop</button>
 	  				<button class="Toolsbutton" value="Rotate" onclick="openNav(this)" id=""><i class="fa fa-repeat"></i><br>Rotate</button>
 	  				<button class="Toolsbutton" value="Effects" onclick="openNav(this)" id=""><i class="fa fa-eyedropper"></i><br>Effects</button>
 					<button class="Toolsbutton" value="Filters" onclick="openNav(this)" id=""><i class="fa fa-filter"></i><br>Filters</button>
@@ -59,48 +95,49 @@
 						<div id="ResizeNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 						  <button class="Navbutton" value="Percentage" data-pname="Resize" onclick="showOptions(this)" id="">By Percentage</button>
-						  <div id="ResizePercentage">	
+						  <div class="	Panel" id="ResizePercentage">	
 								  <label for="percentH">Horizontal: </label><input type="text" id="PercentageH" size="4" value="100"><br>
-								  <label for="percentV">Vertical: &nbsp&nbsp&nbsp&nbsp&nbsp</label><input type="text" id="PercentageV" size="4" value="100"><br><br>
+								  <label for="percentV">Vertical: </label><input type="text" id="PercentageV" size="4" value="100"><br><br>
 								  <label class="container">Maintain Aspect Ratio
-  									<input type="checkbox" checked="checked">
-									<span class="checkmark"></span>
+  									<input type="checkbox" checked="checked" id="checkboxP">
+									<span class="checkmark" value="true" id="checkP"></span>
 								</label>
 						  </div>
 						  <button class="Navbutton" value="Dimension" data-pname="Resize" onclick="showOptions(this)" id="">By Dimensions</button>
-						  <div id="ResizeDimension">	
+						  <div class="Panel" id="ResizeDimension">	
 								  <label for="dimH">Horizontal: </label><input type="text" id="DimensionH" size="4" value="100"><br>
-								  <label for="dimV">Vertical: &nbsp&nbsp&nbsp&nbsp&nbsp</label><input type="text" id="DimensionV" size="4" value="100"><br><br>
+								  <label for="dimV">Vertical: </label><input type="text" id="DimensionV" size="4" value="100"><br><br>
 								  <label class="container">Maintain Aspect Ratio
-  									<input type="checkbox" checked="checked">
-									<span class="checkmark"></span>
+  									<input type="checkbox" checked="checked" id="checkboxD">
+									<span class="checkmark" value="true" id="checkD"></span>
 								</label>
 						  </div>
 						</div>
 						<div id="RotateNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-						  <button class="Navbutton" value="90C" data-pname="Rotate" onclick="" id="">Rotate 90&deg; clockwise</button>
-						  <button class="Navbutton" value="90AC" data-pname="Rotate" onclick="" id="">Rotate 90&deg; anti-clockwise</button>
+						  <button class="Navbutton" value="90C" data-pname="Rotate" onclick="rotate90(true)" id="">Rotate 90&deg; clockwise</button>
+						  <button class="Navbutton" value="90AC" data-pname="Rotate" onclick="rotate90(false)" id="">Rotate 90&deg; anti-clockwise</button>
 						  <button class="Navbutton" value="Custom" data-pname="Rotate" onclick="showOptions(this)" id="">Custom</button>
-						  <div id="RotateCustom">	
+						  <div class="Panel" id="RotateCustom">	
 								  <label for="RotateCustom">Angle (in &deg;): </label><input type="text" id="RotateC" size="3" value="0"><br>
 						  </div>
-						  <button class="Navbutton" value="Mirror" data-pname="Rotate" onclick="" id="">Mirror</button>
+						  <button class="Navbutton" value="Mirror" data-pname="Rotate" onclick="mirror()" id="">Mirror</button>
 						</div>
 						<div id="EffectsNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-						  <button class="Navbutton" value="Blur" data-pname="Effects" onclick="" id="">Blur</button>
-						  <button class="Navbutton" value="Sharpen" data-pname="Effects" onclick="" id="">Sharpen</button>
+						  <button class="Navbutton" value="Blur" data-pname="Effects" onclick="blur()" id="">Blur</button>
+						  <button class="Navbutton" value="Sharpen" data-pname="Effects" onclick="sharpen()" id="">Sharpen</button>
 						</div>
 						<div id="FiltersNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-						  <button class="Navbutton" value="Grayscale" data-pname="Filters" onclick="" id="">Grayscale</button>
-						  <button class="Navbutton" value="Negative" data-pname="Filters" onclick="" id="">Negative</button>
+						  <button class="Navbutton" value="Grayscale" data-pname="Filters" onclick="grayscale()" id="">Grayscale</button>
+						  <button class="Navbutton" value="Negative" data-pname="Filters" onclick="negative()" id="">Negative</button>
 						</div>
 						<div id="StickersNav" class="sidenav" >
 						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 						</div>
             	<div class="Canvas" id="Canvas">
+					<img src="test.jpg" id="image" style="width:70%; margin:auto;">
             	</div>
 			</div>
             	<div class="Footer">
@@ -108,23 +145,18 @@
 						Image Resolution: (0px,0px)
             		</div>	
 	            	<div class="Zoom">
-						<button class="button1"><i class="fa fa-minus"></i></button>
-						<div class="dropup">
-							<button class="zoom">Fit</button>
-							  <div class="dropup-content">
-							  	<a href="#">Fit</a>
-							  	<a href="#">Fill</a>
-							  	<a href="#">25%</a>
-							  	<a href="#">50%</a>
-							  	<a href="#">75%</a>
-							  	<a href="#">100%</a>
-							  	<a href="#">200%</a>
-							  	<a href="#">500%</a>
-							  	<a href="#">750%</a>
-							  	<a href="#">1000%</a>
-							  </div>
-						</div>
-						<button class="button1"><i class="fa fa-plus"></i></button>
+						<button class="button1" onclick="zoomless()"><i class="fa fa-minus"></i></button>
+						<select class="button1" id="zoom" onclick="zoom(this)">
+								  	<option value="25">25%</option>
+								  	<option value="50">50%</option>
+								  	<option value="75">75%</option>
+								  	<option value="100" selected=1>100%</option>
+								  	<option value="200">200%</option>
+								  	<option value="500">500%</option>
+								  	<option value="750">750%</option>
+								  	<option value="1000">1000%</option>
+						</select>
+						<button class="button1" onclick="zoommore()"><i class="fa fa-plus"></i></button>
             		</div>	
 	  				<a href ="contact.html"><button class="button"><i class="fa fa-envelope"></i><br>Contact</button></a>
             	</div>
