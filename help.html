@@ -1,53 +1,111 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" dir="ltr">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- fontawesome -->
         <script src="https://kit.fontawesome.com/bc0320a353.js" crossorigin="anonymous"></script>
+        <link rel="shortcut icon" href="favicon2.ico"/>
+		<title>Snapz - Photo Editing in no time</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montaga&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 
 body {
-  background-color: #393e46;
+  background-color: #222831;
   color: #FFF; /*393e46*/
-  font-size: 20px;
+  font-size: 16px;
+  margin: auto;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #FFF;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  float: left;
+}
+
+.backbutton {
+  background-color: transparent;
+  color: #FFF;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 26px;
+  cursor: pointer;
+  float: left;
+  outline: none;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 10px;
+  left: 25px;
 }
 
 h1{
-  font-family: 'Montaga', serif;
-  background-image:url("background.jpg");
-  background-size: cover;
   padding: 1%;
   padding-left: 2%;
-  color: black;
+  color: #FFF;
+  text-align: center;
 }
 .accordion {
-  background-color: #eee;
-  color:  black;
+  background-color: #23ACD6;
+  color: #222831; 
   cursor: pointer;
   padding: 18px;
-  width: 100%;
-  border: line;
+  border: none;
   text-align: left;
   outline: none;
-  font-size: 15px;
+  font-size: 16px;
+  outline: none;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
   transition: 0.4s;
+  width: 96%;
+  margin:0 2%;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
-.active, .accordion:hover {
-  background-color: #ccc; 
-}
-
-.panel {
-  padding: 0 18px;
-  display: none;
+.accordion:hover {
+  transition: 0.4s;
   background-color: #222831;
-  color: white;
+  color: #FFF;
+  border: 1px solid #23ACD6;
+}
+
+.accordion:after {
+  content: "\002B";
+  color: #222831; 
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.accordion:hover:after {
+  transition: 0.4s;
+  color: #FFF; 
+}
+.panel {
+  margin: auto;
+  padding: auto;
+  width: 95%;
+  background-color: transparent;
+  max-height: 0;
   overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 </style>
 </head>
 <body>
 
+<a href ="index.html"><button class="backbutton"><i class="fa fa-arrow-left"></i> Back</button></a>
 <h1>FAQs</h1>
 
 <button class="accordion">Question 1 - How to use crop feature?</button>
@@ -73,11 +131,11 @@ for (i = 0; i < acc.length; i++) {
   acc[i].addEventListener("click", function() {
     this.classList.toggle("active");
     var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
     } else {
-      panel.style.display = "block";
-    }
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
   });
 }
 </script>

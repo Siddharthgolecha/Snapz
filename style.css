@@ -1,6 +1,7 @@
 html, body, .grid-container { 
   height: 100%; 
   margin: 0;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -8,6 +9,7 @@ body {
   color: #FFF; /*393e46*/
   font-size: 16px;
   margin: auto;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -24,8 +26,9 @@ a {
   margin: 0;
   width: 100%;
   z-index: 2;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
   background-color: #222831;
-  grid-template-columns: 1fr 2fr 1.5fr;
+  grid-template-columns: 1fr 1.5fr 1fr;
   grid-template-rows: 1fr;
   grid-template-areas: "Logo Menu Others";
   grid-area: Navbar;
@@ -56,7 +59,8 @@ a {
   float: left;
   height: 100%;
   width: 100%;
-  outline: none;
+  outline: none
+  font-family: Montaga,Arial, Helvetica, sans-serif;;
 }
 
 .Logo .button:not(:last-child) {
@@ -65,12 +69,18 @@ a {
 
 .Menu {
   display: grid;
-  grid-template-columns: repeat(6,1fr);
+  grid-template-columns: repeat(5,1fr);
   grid-template-rows: 1fr;
-  grid-template-areas: "button button button button button button";
+  grid-template-areas: "Menubutton Menubutton Menubutton Menubutton Menubutton";
   grid-area: Menu;
 }
- 
+
+.Menu input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 
 .Menubutton {
   background-color: #222831;
@@ -84,6 +94,7 @@ a {
   height: 100%;
   width: 100%;
   outline: none;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .Menubutton:hover {
@@ -96,9 +107,9 @@ a {
   display: grid;
   vertical-align: center;
   margin: 5px 10px 5px 10px;
-  grid-template-columns: 1fr 1fr 2fr 2fr;
+  grid-template-columns: 1fr 1fr 2.5fr 2.5fr;
   grid-template-rows: 1fr;
-  gap: 3px 3px;
+  gap: 10px 10px;
   grid-template-areas: ". . button button";
   grid-area: Others;
 }
@@ -109,7 +120,6 @@ a {
   border: none;
   padding: 5px 10px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
@@ -117,6 +127,8 @@ a {
   width: 100%;
   outline: none;
   border-radius: 500px;
+  margin-right: 10px;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .Othersbutton:hover {
@@ -138,15 +150,6 @@ a {
   grid-template-columns: 0.1fr 2.7fr;
   grid-template-rows: 1fr 15fr 1fr;
   grid-template-areas: "	Navbar Navbar" "Tools Area" "Footer Footer";
-}
-
-.Area {
-  display: grid;
-  margin: 0;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: "Canvas";
-  grid-area: Area;
 }
 
 .Tools {
@@ -171,12 +174,23 @@ a {
   height: 100%;
   width: 100%;
   outline: none;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .Toolsbutton:hover {
   transition: 0.4s;
   background-color: #23ACD6;
   color: #222831; 
+}
+
+.Area {
+  display: grid;
+  margin: 0;
+  overflow: auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "Canvas";
+  grid-area: Area;
 }
 
 .Canvas {
@@ -202,6 +216,7 @@ a {
   box-shadow: 0 -4px 2px -2px rgba(0,0,0,.2);
   position: sticky;
   bottom: 0;
+  padding: 5px 0;
   width: 100%;
   z-index: 2;
 }
@@ -213,8 +228,8 @@ a {
   text-align: center;
   display: inline-block;
   font-size: 16px;
-  text-decoration: none;
   margin: 2px;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .Zoom {
@@ -222,7 +237,7 @@ a {
   background-color: #222831;
   grid-template-columns: 1fr 2fr 1fr; 
   grid-template-rows: 1fr;
-  grid-template-areas: "button1 dropup button1";
+  grid-template-areas: "button1 button1 button1";
   grid-area: Zoom;
 }
 
@@ -238,6 +253,8 @@ a {
   height: 100%;
   width: 100%;
   outline: none;
+  margin: 0;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .Zoom .button1:hover {
@@ -246,55 +263,12 @@ a {
   color: #222831; 
 }
 
-.Zoom .zoom {
-  background-color: #222831;
-  color: #FFF;
-  border: none;
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
-  float: left;
-  height: 100%;
-  width: 100%;
-  outline: none;
-}
-
-.dropup {
-  position: relative;
-  display: inline-block;
-}
-
-.dropup-content {
-  display: none;
-  position: absolute;
-  background-color: #222;
-  margin: auto; 
-  bottom: 50px;
-  z-index: 1;
-}
-
-.dropup-content a {
+option {
+  background-color: #222831; 
   color: #FFF;
   margin: auto;
-  padding: 5px 0 5px 0;
+  padding: auto;
   text-align: center;
-  text-decoration: none;
-  min-width: 100%;
-  bottom: 50px;
-  display: block;
-}
-
-.dropup-content a:hover {background-color: #111}
-
-.dropup:hover .dropup-content {
-  display: block;
-}
-
-.dropup:hover .zoom {
-  transition: 0.4s;
-  background-color: #23ACD6;
-  color: #222831; 
 }
 
 .Footer .button {
@@ -304,7 +278,6 @@ a {
   margin: auto;
   padding: 5px 10px;
   text-align: center;
-  text-decoration: none;
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
@@ -312,6 +285,7 @@ a {
   width: 60%;
   outline: none;
   border-radius: 500px;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .Footer .button:hover {
@@ -321,11 +295,11 @@ a {
   border: 1px solid #23ACD6;
 }
 /*
-.sidenav * { 
+.grid-container * { 
  border: 1px solid red;
  position: relative;
-}*/
-
+}
+*/
 .grid-container *:after { 
  position: absolute;
  top: 0;
@@ -337,6 +311,7 @@ a {
   height: 100%;
   width: 0;
   position: fixed;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
   top: inherit;
   left: inherit;
   z-index: 1;
@@ -360,6 +335,7 @@ a {
   cursor: pointer;
   width: 100%;
   outline: none;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .Navbutton:hover {
@@ -378,15 +354,15 @@ a {
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
-  .sidenav button {font-size: 20px;}
+  .sidenav button {font-size: 16px;}
 }
 
-#ResizePercentage, #ResizeDimension, #RotateCustom {
+.Panel {
   background-color: #222831;
   color: #FFF;
-  padding: 10px; 
-  margin: 10px;
-  width: 80%;
+  padding: 5%; 
+  margin: 0;
+  width: 85%;
   font-size: 16px;
   display: none;
 }
@@ -394,6 +370,7 @@ a {
 input[type=text], select {
   padding: 12px 20px;
   margin: 8px 0;
+  width: 100%;
   display: inline-block;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -406,6 +383,7 @@ input[type=text], select {
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 16px;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

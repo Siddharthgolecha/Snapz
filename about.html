@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<html lang="en" dir="ltr">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" href="favicon2.ico"/>
+		<title>Snapz - Photo Editing in no time</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montaga&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
   margin: 0;
+  color: #222831;
 }
 
 html {
   box-sizing: border-box;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 *, *:before, *:after {
@@ -24,15 +32,20 @@ html {
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  background-color: #222831;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.2), 
+        -4px 0 2px -2px rgba(0,0,0,.2), 4px 0 2px -2px rgba(0,0,0,.2);
   margin: 8px;
+  color: #fff;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .about-section {
   padding: 50px;
   text-align: center;
-  background-color: #474e5d;
+  background-color: #393e46;
   color: white;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .container {
@@ -47,22 +60,60 @@ html {
 
 .title {
   color: grey;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+.about {
+ height: 100px;
+ font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #FFF;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  float: left;
+}
+
+.backbutton {
+  background-color: transparent;
+  color: #FFF;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 26px;
+  cursor: pointer;
+  float: left;
+  outline: none;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 10px;
+  left: 25px;
 }
 
 .button {
+  background-color: #23ACD6;
+  color: #222831; 
   border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
+  padding: 10px;
   text-align: center;
+  display: inline-block;
+  font-size: 16px;
   cursor: pointer;
+  height: 100%;
   width: 100%;
+  outline: none;
+  border-radius: 500px;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
 }
 
 .button:hover {
-  background-color: #555;
+  transition: 0.4s;
+  background-color: #222831;
+  color: #FFF;
+  border: 1px solid #23ACD6;
 }
 
 @media screen and (max-width: 650px) {
@@ -76,6 +127,7 @@ html {
 <body>
 
 <div class="about-section">
+<a href ="index.html"><button class="backbutton"><i class="fa fa-arrow-left"></i> Back</button></a>
   <h1>"About"</h1>
   <p>Our Image Editor(SNAPZ) provides basic options for processing an image. Wanna try photo editing in No Time SNAPZ is for you. Some of its key features are Cropping , Resizing , Applying filters and stickers , Blurring and Sharpening. </p>
   <p>We also provide options to Save and Download your processed image on your device along with undo and redo options.</p>
@@ -85,39 +137,39 @@ html {
 <div class="row">
   <div class="column">
     <div class="card">
-      <img src="/w3images/team1.jpg" alt="Susmit" style="width:100%">
+      <img src="Susmit.png" alt="Susmit" style="width:100%">
       <div class="container">
         <h2>Mr. Susmit Saraswat</h2>
-        <p class="title">CEO & Founder</p>
-        <p>Some text that describes sir.</p>
+        <p class="title">Mentor</p>
+        <p class="about">Some text that describes sir.</p>
         <p>saraswat.susmit@gmail.com</p>
-        
+        <p><button class="button">Contact</button></p>        
       </div>
     </div>
   </div>
 
   <div class="column">
     <div class="card">
-      <img src="/w3images/team2.jpg" alt="Siddharth" style="width:100%">
+      <img src="Siddharth.jpeg" alt="Siddharth" style="width:100%">
       <div class="container">
         <h2>Siddharth Golecha</h2>
-        <p class="title">Designer & Contributer</p>
-        <p>Some text that describes Siddharth.</p>
-        <p>siddharthgolecha24@gmail.com.com</p>
-        
+        <p class="title">Designer</p>
+        <p class="about">Technology Enthusiast | AI | Android App Dev | Game Dev | Self-Driving Cars | Quantum Computing | Learning is Awesome!</p>
+        <p>golechasiddharth@gmail.com.com</p>
+        <p><button class="button">Contact</button></p>        
       </div>
     </div>
   </div>
   
   <div class="column">
     <div class="card">
-      <img src="/w3images/team3.jpg" alt="Lakshita" style="width:100%">
+      <img src="Lakshita.jpeg" alt="Lakshita" style="width:100%">
       <div class="container">
         <h2>Lakshita Sharma</h2>
-        <p class="title">Designer & Contributer</p>
-        <p>Some text that describes Lakshita</p>
+        <p class="title">Designer</p>
+        <p class="about">Student at M.B.M. Engineering College, Jodhpur</p>
         <p>lakshitasharma.1104@gmail.com</p>
-        
+        <p><button class="button">Contact</button></p>        
       </div>
     </div>
   </div>
