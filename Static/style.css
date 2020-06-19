@@ -1,0 +1,445 @@
+html, body, .grid-container { 
+  height: 100%; 
+  margin: 0;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: #393e46;
+  color: #FFF; /*393e46*/
+  font-size: 16px;
+  margin: auto;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #FFF;
+  text-align: center;
+  display: inline-block;
+  cursor: pointer;
+  float: left;
+}
+
+.Navbar {
+  display: grid;
+  margin: 0;
+  width: 100%;
+  z-index: 2;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+  background-color: #222831;
+  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "Logo Menu Others";
+  grid-area: Navbar;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.2);
+  position: sticky;
+  top: 0;
+}
+
+.Logo {
+  display: grid;
+  grid-template-columns: 1fr ;
+  grid-template-rows: 1fr;
+  gap: 1px 1px;
+  grid-template-areas: "Logo_img Logo_text";
+  grid-area: Logo;
+}
+
+.Logo .button {
+  background:url(logo_4.png);
+  background-repeat: no-repeat;
+  background-color: Transparent;
+  border: none;
+  padding: 10px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 100%;
+  outline: none
+  font-family: Montaga,Arial, Helvetica, sans-serif;;
+}
+
+.Logo .button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+.Menu {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "Menubutton Menubutton Menubutton Menubutton Menubutton";
+  grid-area: Menu;
+}
+
+.Menu input[type=file] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.Menubutton {
+  background-color: #222831;
+  color: #FFF;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+.Menubutton:hover {
+  transition: 0.4s;
+  background-color: #23ACD6;
+  color: #222831; 
+}
+
+.Others {
+  display: grid;
+  vertical-align: center;
+  margin: 5px 10px 5px 10px;
+  grid-template-columns: 1fr 1fr 2.5fr 2.5fr;
+  grid-template-rows: 1fr;
+  gap: 10px 10px;
+  grid-template-areas: ". . button button";
+  grid-area: Others;
+}
+
+.Othersbutton {
+  background-color: #23ACD6;
+  color: #222831; 
+  border: none;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  border-radius: 500px;
+  margin-right: 10px;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+.Othersbutton:hover {
+  transition: 0.4s;
+  background-color: #222831;
+  color: #FFF;
+  border: 1px solid #23ACD6;
+}
+
+.Logo_img {
+  height: 100%;
+  vertical-align:middle;
+}
+
+
+.grid-container {
+  display: grid;
+  gap: 0px 2px;
+  grid-template-columns: 0.1fr 2.7fr;
+  grid-template-rows: 1fr 15fr 1fr;
+  grid-template-areas: "	Navbar Navbar" "Tools Area" "Footer Footer";
+}
+
+.Tools {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6,1fr);
+  grid-template-areas: "button" "button" "button" "button" "button" "button";
+  grid-area: Tools;
+  box-shadow: 4px 0 2px -2px rgba(0,0,0,.2);
+}
+
+.Toolsbutton {
+  background-color: #222831;
+  color: #FFF;
+  padding: 10px 10px;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+.Toolsbutton:hover {
+  transition: 0.4s;
+  background-color: #23ACD6;
+  color: #222831; 
+}
+
+.Area {
+  display: grid;
+  margin: 0;
+  overflow: auto;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "Canvas";
+  grid-area: Area;
+}
+
+.Canvas {
+  display: grid;
+  grid-area: Canvas;
+  margin: auto;
+  height: 90%;
+  width: 80%;
+  z-index: 0;
+  background-color: #FFF;
+  box-shadow: 0 4px 2px -2px rgba(0,0,0,.2), 
+        -4px 0 2px -2px rgba(0,0,0,.2), 4px 0 2px -2px rgba(0,0,0,.2);
+}
+
+
+.Footer {
+  display: grid;
+  background-color: #222831;
+  grid-template-columns: 4fr 1fr 1fr; 
+  grid-template-rows: 1fr;
+  grid-template-areas: "Resolution Zoom button";
+  grid-area: Footer;
+  box-shadow: 0 -4px 2px -2px rgba(0,0,0,.2);
+  position: sticky;
+  bottom: 0;
+  padding: 5px 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.Resolution {
+  background-color: #222831;
+  color: #FFF;
+  padding: 10px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+.Zoom {
+  display: grid;
+  background-color: #222831;
+  grid-template-columns: 1fr 2fr 1fr; 
+  grid-template-rows: 1fr;
+  grid-template-areas: "button1 button1 button1";
+  grid-area: Zoom;
+}
+
+.Zoom .button1 {
+  background-color: #222831;
+  color: #FFF;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+  height: 100%;
+  width: 100%;
+  outline: none;
+  margin: 0;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+.Zoom .button1:hover {
+  transition: 0.4s;
+  background-color: #23ACD6;
+  color: #222831; 
+}
+
+option {
+  background-color: #222831; 
+  color: #FFF;
+  margin: auto;
+  padding: auto;
+  text-align: center;
+}
+
+.Footer .button {
+  background-color: #23ACD6;
+  color: #222831; 
+  border: none;
+  margin: auto;
+  padding: 5px 10px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  height: 90%;
+  width: 60%;
+  outline: none;
+  border-radius: 500px;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+.Footer .button:hover {
+  transition: 0.4s;
+  background-color: #222831;
+  color: #FFF;
+  border: 1px solid #23ACD6;
+}
+/*
+.grid-container * { 
+ border: 1px solid red;
+ position: relative;
+}
+*/
+.grid-container *:after { 
+ position: absolute;
+ top: 0;
+ left: 0;
+}
+
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+  top: inherit;
+  left: inherit;
+  z-index: 1;
+  background-color: #222831;
+  color: #FFF;
+  overflow-x: hidden;
+  transition: 0.4s;
+  padding-top: 60px;
+  box-shadow: 4px 0 2px -2px rgba(0,0,0,.2) , 0 -4px 2px -2px rgba(0,0,0,.2);
+}
+
+.Navbutton {
+  background-color: #222831;
+  color: #FFF;
+  margin: auto;
+  padding: 10px;
+  border: none;
+  text-align: center;
+  display: block;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  outline: none;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+}
+
+.Navbutton:hover {
+  transition: 0.4s;
+  background-color: #23ACD6;
+  color: #222831; 
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav button {font-size: 16px;}
+}
+
+.Panel {
+  background-color: #222831;
+  color: #FFF;
+  padding: 5%; 
+  margin: 0;
+  width: 85%;
+  font-size: 16px;
+  display: none;
+}
+
+input[type=text], select {
+  padding: 12px 20px;
+  margin: 8px 0;
+  width: 100%;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.container {
+  display: block;
+  position: relative;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: Montaga,Arial, Helvetica, sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #FFF;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #DDD;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #23ACD6;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 5px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
