@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- Add icon library -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="shortcut icon" href="../static/favicon2.ico"/>
+		<title>Snapz - Photo Editing in no time</title>
+		<link href="../static/style.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="../static/navigation.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script>
+			var width, imgw;
+			var hieght, imgh;
+			var ratio;
+			var perch ;
+			var percv ;
+			var dimh ;
+			var dimv ;
+			var img ;
+			var p ;
+			var d ;
+			function updateSize(h,w){
+				$(".Resolution").text("Image Resolution: ("+w+"px,"+h+"px)");
+			}
+			$(document).ready( function(){
+			imgw = $('#image').width();
+			imgh = $('#image').height();
+			if ( imgh !=0 && imgw !=0) {
+			ratio = imgh/imgw;
+			$('#Canvas').width(imgw/2);
+			$("#Canvas").height(imgh/2);
+			}
+			width = $('#Canvas').width();
+			height = $("#Canvas").height();
+			$('#image').width("100%");
+			console.log(imgw);
+			updateSize(Math.round(imgh),Math.round(imgw));
+			$('#DimensionH').val(Math.round(imgw));
+			$('#DimensionV').val(Math.round(imgh));
+			console.log(width);
+			perch = $('#PercentageH');
+			percv = $('#PercentageV');
+			dimh = $('#DimensionH');
+			dimv = $('#DimensionV');
+			img = $('#image');
+			p = $("#checkP");
+			d = $("#checkD");
+			perch.change(function(){
+					resizep(img,perch,percv,p,true);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
+    		});
+			percv.change(function(){
+					resizep(img,perch,percv,p,false);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
+    		});
+			dimh.change(function(){
+					resized(img,dimh,dimv,d,true);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
+    		});
+			dimv.change(function(){
+					resized(img,dimh,dimv,d,false);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
+    		});
+			$("#checkboxP").click(function(){
+					console.log("checkbox P checked = "+$("#checkboxP").prop("checked"));
+					$("#checkP").attr("value",$("#checkboxP").prop("checked"));
+					resizep(img,perch,percv,p,false);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
+				});
+			$("#checkboxD").click(function(){
+					console.log("checkbox D checked = "+$("#checkboxD").prop("checked"));
+            		$("#checkD").attr("value",$("#checkboxD").prop("checked"));
+					resized(img,dimh,dimv,d,false);
+					updateSize(Math.round($('#image').height()),Math.round($('#image').width()));
+				});
+			$("#RotateC").change(function(){
+					rotate();
+    			});
+			$("#open").click(function(){
+				$("#files").click();
+			});
+			$("#files").change(function(){
+				$("#uploadForm").submit();
+				});
+			});
+		</script>
+        <link href="https://fonts.googleapis.com/css2?family=Montaga&display=swap" rel="stylesheet">
+
+	</head>
+	<body>
+		<div class="grid-container">
+            <div class="Navbar">
+				<div class="Logo"><!--
+					  <button class="button"><a href="index.html" class="Logo_text"><img class="Logo_img"></img>Snapz</a></button>
+						  <img src="logo_4.png" class="Logo_img">
+					  -->
+				</div>
+                <div class="Menu">
+					<form method="post" enctype="multipart/form-data" style="display:none;" id="uploadForm">
+						<input type="file" style="visibility:hidden;" id="files">
+						<input type="submit" style="visibility:hidden;" value="Upload">
+					</form>
+	  				<button class="Menubutton" id="open"><i class="fa fa-folder-open" ></i><br>Open</button>
+	  				<button class="Menubutton" onclick="save()"><i class="fa fa-save"></i><br>Save</a></button>
+	  				<button class="Menubutton" onclick="undo()"><i class="fa fa-undo"></i><br>Undo</button>
+	  				<button class="Menubutton" onclick="redo()"><i class="fa fa-repeat"></i><br>Redo</button>
+	  				<button class="Menubutton" onclick="download()"><i class="fa fa-download"></i><br>Download</button>
+				</div>
+				<div class="Others">
+					<div></div><div></div>
+	  				<a href ="help.html"><button class="Othersbutton"><i class="fa fa-question-circle"></i><br>Help</button></a>
+	  				<a href ="about.html"><button class="Othersbutton"><i class="fa fa-support"></i><br>About</button></a>
+				</div>
+            </div>
+            <div class="Tools">
+	  				<button class="Toolsbutton" value="Resize" onclick="openNav(this)" id=""><i class="fa fa-arrows-alt"></i><br>Resize</button>
+	  				<button class="Toolsbutton" value="Crop" onclick="openNav(this)" id=""><i class="fa fa-crop" onlick="crop()"></i><br>Crop</button>
+	  				<button class="Toolsbutton" value="Rotate" onclick="openNav(this)" id=""><i class="fa fa-repeat"></i><br>Rotate</button>
+	  				<button class="Toolsbutton" value="Effects" onclick="openNav(this)" id=""><i class="fa fa-eyedropper"></i><br>Effects</button>
+					<button class="Toolsbutton" value="Filters" onclick="openNav(this)" id=""><i class="fa fa-filter"></i><br>Filters</button>
+					<button class="Toolsbutton" value="Stickers" onclick="openNav(this)" id=""><i class="fa fa-sticky-note"></i><br>Stickers</button>
+            </div>
+            <div class="Area" id="Area">
+						<div id="ResizeNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						  <button class="Navbutton" value="Percentage" data-pname="Resize" onclick="showOptions(this)" id="">By Percentage</button>
+						  <div class="	Panel" id="ResizePercentage">
+								  <label for="percentH">Horizontal: </label><input type="text" id="PercentageH" size="4" value="100"><br>
+								  <label for="percentV">Vertical: </label><input type="text" id="PercentageV" size="4" value="100"><br><br>
+								  <label class="container">Maintain Aspect Ratio
+  									<input type="checkbox" checked="checked" id="checkboxP">
+									<span class="checkmark" value="true" id="checkP"></span>
+								</label>
+						  </div>
+						  <button class="Navbutton" value="Dimension" data-pname="Resize" onclick="showOptions(this)" id="">By Dimensions</button>
+						  <div class="Panel" id="ResizeDimension">
+								  <label for="dimH">Horizontal: </label><input type="text" id="DimensionH" size="4" value="100"><br>
+								  <label for="dimV">Vertical: </label><input type="text" id="DimensionV" size="4" value="100"><br><br>
+								  <label class="container">Maintain Aspect Ratio
+  									<input type="checkbox" checked="checked" id="checkboxD">
+									<span class="checkmark" value="true" id="checkD"></span>
+								</label>
+						  </div>
+						</div>
+						<div id="RotateNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						  <button class="Navbutton" value="90C" data-pname="Rotate" onclick="rotate90(true)" id="">Rotate 90&deg; clockwise</button>
+						  <button class="Navbutton" value="90AC" data-pname="Rotate" onclick="rotate90(false)" id="">Rotate 90&deg; anti-clockwise</button>
+						  <button class="Navbutton" value="Custom" data-pname="Rotate" onclick="showOptions(this)" id="">Custom</button>
+						  <div class="Panel" id="RotateCustom">
+								  <label for="RotateCustom">Angle (in &deg;): </label><input type="text" id="RotateC" size="3" value="0"><br>
+						  </div>
+						  <button class="Navbutton" value="Mirror" data-pname="Rotate" onclick="mirror()" id="">Mirror</button>
+						</div>
+						<div id="EffectsNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						  <button class="Navbutton" value="Blur" data-pname="Effects" onclick="blur()" id="">Blur</button>
+						  <button class="Navbutton" value="Sharpen" data-pname="Effects" onclick="sharpen()" id="">Sharpen</button>
+						</div>
+						<div id="FiltersNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						  <button class="Navbutton" value="Grayscale" data-pname="Filters" onclick="grayscale()" id="">Grayscale</button>
+						  <button class="Navbutton" value="Negative" data-pname="Filters" onclick="negative()" id="">Negative</button>
+						</div>
+						<div id="StickersNav" class="sidenav" >
+						  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+						</div>
+            	<div class="Canvas" id="Canvas">
+					{% if path %}
+						<img src="{{path}}" id="image" style="margin:auto;">
+					{% else %}
+						<img src="" id="image" style="margin:auto;">
+					{% endif %}
+            	</div>
+			</div>
+            	<div class="Footer">
+	            	<div class="Resolution">
+						Image Resolution: (0px,0px)
+            		</div>
+	            	<div class="Zoom">
+						<button class="button1" onclick="zoomless()"><i class="fa fa-minus"></i></button>
+						<select class="button1" id="zoom" onclick="zoom(this)">
+								  	<option value="25">25%</option>
+								  	<option value="50" selected=1>50%</option>
+								  	<option value="75">75%</option>
+								  	<option value="100">100%</option>
+								  	<option value="200">200%</option>
+								  	<option value="500">500%</option>
+								  	<option value="750">750%</option>
+								  	<option value="1000">1000%</option>
+						</select>
+						<button class="button1" onclick="zoommore()"><i class="fa fa-plus"></i></button>
+            		</div>
+	  				<a href ="contact.html"><button class="button"><i class="fa fa-envelope"></i><br>Contact</button></a>
+            	</div>
+		</div>
+	</body>
+</html>
