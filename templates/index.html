@@ -100,7 +100,7 @@
 				</div>
                 <div class="Menu">
 					<form method="post" enctype="multipart/form-data" style="display:none;" id="uploadForm">
-						<input type="file" style="visibility:hidden;" id="files">
+						<input type="file" style="visibility:hidden;" id="files" name="file">
 						<input type="submit" style="visibility:hidden;" value="Upload">
 					</form>
 	  				<button class="Menubutton" id="open"><i class="fa fa-folder-open" ></i><br>Open</button>
@@ -170,7 +170,7 @@
 						</div>
             	<div class="Canvas" id="Canvas">
 					{% if path %}
-						<img src="{{path}}" id="image" style="margin:auto;">
+						<img src= {{ path }} id="image" style="margin:auto; width:auto;">
 					{% else %}
 						<img src="" id="image" style="margin:auto;">
 					{% endif %}
