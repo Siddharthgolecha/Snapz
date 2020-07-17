@@ -22,6 +22,7 @@
 			var img ;
 			var p ;
 			var d ;
+			var url;
 			function updateSize(h,w){
 				$(".Resolution").text("Image Resolution: ("+w+"px,"+h+"px)");
 			}
@@ -105,9 +106,13 @@
 					</form>
 	  				<button class="Menubutton" id="open"><i class="fa fa-folder-open" ></i><br>Open</button>
 	  				<button class="Menubutton" onclick="save()"><i class="fa fa-save"></i><br>Save</a></button>
-	  				<button class="Menubutton" onclick="undo()"><i class="fa fa-undo"></i><br>Undo</button>
-	  				<button class="Menubutton" onclick="redo()"><i class="fa fa-repeat"></i><br>Redo</button>
-	  				<button class="Menubutton" onclick="download()"><i class="fa fa-download"></i><br>Download</button>
+	  				<button class="Menubutton" onclick="undo()" disabled><i class="fa fa-undo"></i><br>Undo</button>
+	  				<button class="Menubutton" onclick="redo()" disabled><i class="fa fa-repeat"></i><br>Redo</button>
+					{% if path %}
+						<a href="{{ path }}" download="{{ name }}"><button class="Menubutton" id="download"><i class="fa fa-download"></i><br>Download</button></a>
+					{% else %}
+						<button class="Menubutton" id="download" onclick="alert('No image selected')"><i class="fa fa-download"></i><br>Download</button>
+					{% endif %}
 				</div>
 				<div class="Others">
 					<div></div><div></div>
@@ -170,7 +175,7 @@
 						</div>
             	<div class="Canvas" id="Canvas">
 					{% if path %}
-						<img src= {{ path }} id="image" style="margin:auto; width:auto;">
+						<img src= "{{ path }}" id="image" style="margin:auto; width:auto;">
 					{% else %}
 						<img src="" id="image" style="margin:auto;">
 					{% endif %}

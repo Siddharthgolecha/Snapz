@@ -100,6 +100,35 @@ function zoommore(){
 		$("#zoom").val(i);
 }
 
+function postdata(op,img,values = null){
+	var objectData =
+		     {
+		         Operation: op,
+				 Image: img,
+			     Values: values   
+		     };
+	$.ajax({
+		        type: "POST",
+		        url: "/edit",
+		        dataType: "json",
+		        data: objectData,
+		        success: function (data) {
+					if (data['status']=="Ok"){
+						console.log("Success");
+						console.log(data['file']);
+						window.location.reload();
+					}
+					else if (data['status']=="Error"){
+						console.log("Some error occured");
+						console.log(data['error']);
+					}
+		        },
+		        error: function () {
+		         alert('There is an issue with the internet connections');
+		        }
+		    });
+}
+
 function resizep(img,inph,inpv,check,h=true){
 	console.log("ResizeP");
 	if (check.attr("value")=="true"){
@@ -110,70 +139,52 @@ function resizep(img,inph,inpv,check,h=true){
 	img.height((imgh*(inpv.val()/100))+"px");
 }
 function resized(img,inph,inpv,check,h=true){
-	console.log("ResizeD");
-	if (check.attr("value")=="true"){
-		if (h) inpv.val(Math.round(inph.val()*ratio)); 
-		else inph.val(Math.round(inpv.val()/ratio));
-	}	
-	img.width(inph.val()+"px");
-	img.height(inpv.val()+"px");
-}
-
-function download(){
-	console.log("Download");
-/*	var element = document.createElement('a');
-  	element.setAttribute('href', 'test.jpg');
-  	element.setAttribute('download', 'test');
-
-  	element.style.display = 'none';
-  	document.body.appendChild(element);
-
-  	element.click();
-  	document.body.removeChild(element);*/
+	postdata("Download");
 }
 
 function undo(){
-	console.log("Undo");
+	postdata("Undo");
 }
 
 function redo(){
-	console.log("Redo");
+	postdata("Redo");
 }
 
 function save(){
-	console.log("Save");
+	postdata("Save");
 }
 
 function crop(){
-	console.log("Crop");
+	postdata("Crop");
 }
 
 function rotate90(clockwise=true){
 	if(clockwise){
-		console.log("Rotate 90 deg clockwise");
+		postdata("Rotate 90 deg clockwise");
 	}
 	else{
-		console.log("Rotate 90 deg anti-clockwise");
+		postdata("Rotate 90 deg anti-clockwise");
 	}
 }
 
 function mirror(){
-	console.log("Rotate mirror");
+	postdata("Rotate mirror");
 }
 
 function rotate(){
-	console.log("Rotate custom");
+	postdata("Rotate custom");
 }
 
 function blur(){
-	console.log("Blur");
+	postdata("Blur");
 }
 function sharpen(){
-	console.log("Sharpen");
+	postdata("Sharpen");
 }
 function grayscale(){
-	console.log("Grayscale");
+	img = document.getElementById("image").src.replace('http://127.0.0.1:5000/','');
+	postdata("Grayscale",img);
 }
 function negative(){
-	console.log("Negative");
+	postdata("Negative");
 }
